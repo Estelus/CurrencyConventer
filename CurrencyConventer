@@ -1,0 +1,30 @@
+from requests import get
+
+print("The Currency Converter")
+
+currency = input("Select a currency code: ")
+
+day1 = input("Select a day (YYYY-MM-DD): ")
+
+page1 = get(f"http://api.nbp.pl/api/exchangerates/rates/a/{currency}/{day1}/?format=json")
+
+data1 = page1.json()
+
+# data1 = {
+#     "table": "A",
+#     "currency": "dolar amerykański",
+#     "code": "USD",
+#     "rates": [
+#         {
+#             "no": "060/A/NBP/2023",
+#             "effectiveDate": "2023-03-27",
+#             "mid": 4.3518
+#         }
+#     ]
+# }
+
+exchange = data1["rates"][0]["mid"]
+
+print(f"1 {currency} = {exchange} PLN ")
+
+
